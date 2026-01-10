@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Imani na Nguvu</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Base */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+        }
+
+        /* Desktop blocker */
+        @media (min-width: 768px) {
+            .desktop-overlay { display: flex !important; }
+        }
+
+        .desktop-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: #000;
+            color: #fff;
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Glass card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+        }
+
+        /* Scroll verses */
+        .scroll-content {
+            height: 60vh;
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+        .scroll-content::-webkit-scrollbar { display: none; }
+
+        .glow-text {
+            text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+        }
+
+        /* CTA + Marquee */
+        .cta-banner {
+            background: linear-gradient(90deg, rgba(99,102,241,0.04), rgba(236,72,153,0.03));
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .marquee {
+            --duration: 55s;
+            width: 100%;
+            overflow: hidden;
+            height: 36px;
+        }
+
+        .cta-banner .marquee:first-of-type {
+            --duration: 70s;
+        }
+
+        .marquee-track {
+            display: flex;
+            align-items: center;
+            width: max-content;
+            gap: 4rem;
+            animation: scroll var(--duration) linear infinite;
+        }
+
+        .marquee-reverse .marquee-track {
+            animation-direction: reverse;
+            --duration: 60s;
+        }
+
+        .marquee-group {
+            display: inline-flex;
+            gap: 3rem;
+            white-space: nowrap;
+            flex: 0 0 auto;
+        }
+
+        .marquee-group span {
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        @keyframes scroll {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Optional: pause on touch/hover */
+        .marquee:hover .marquee-track {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+
+<body class="text-white flex items-center justify-center p-4">
+
+    <!-- Desktop warning -->
+    <div class="desktop-overlay flex-col">
+        <i data-lucide="smartphone" class="w-16 h-16 mb-4 text-indigo-400"></i>
+        <h1 class="text-2xl font-bold">Inapatikana kwenye Simu Pekee</h1>
+        <p class="opacity-70 mt-2">Tafadhali fungua ukurasa huu kwa kutumia smartphone.</p>
+    </div>
+
+    <main class="w-full max-w-sm h-full flex flex-col animate__animated animate__fadeIn">
+
+        <!-- Header -->
+        <header class="text-center mb-4 pt-3">
+            <div class="inline-block p-2 bg-indigo-600 rounded-full mb-2 animate__animated animate__pulse animate__infinite">
+                <i data-lucide="shield-check" class="w-7 h-7 text-white"></i>
+            </div>
+            <h1 class="text-2xl font-extrabold tracking-tight" style="color: #00A859;">
+                NGUVU YA IMANI
+            </h1>
+            <p class="text-indigo-300 text-xs font-light uppercase tracking-widest">
+                Leora Tech Solutions
+            </p>
+        </header>
+
+        <!-- Content -->
+        <div class="glass-card p-6 flex-grow flex flex-col overflow-hidden">
+
+            <div class="scroll-content space-y-6 pr-1">
+
+                <div class="border-l-2 border-indigo-500 pl-4">
+                    <p class="text-xs text-indigo-400 font-bold uppercase">Waebrania 11:6</p>
+                    <p class="text-sm italic opacity-90">
+                        “Lakini pasipo imani haiwezekani kumpendeza Mungu…”
+                    </p>
+                </div>
+
+                <div class="border-l-2 border-pink-500 pl-4">
+                    <p class="text-xs text-pink-400 font-bold uppercase">Mathayo 13:58</p>
+                    <p class="text-sm italic opacity-90">
+                        “Hakufanya miujiza mingi huko, kwa sababu ya kutokuamini kwao.”
+                    </p>
+                </div>
+
+                <div class="border-l-2 border-emerald-500 pl-4">
+                    <p class="text-xs text-emerald-400 font-bold uppercase">Luka 18:8</p>
+                    <p class="text-sm italic opacity-90">
+                        “Atakapokuja Mwana wa Adamu, je, ataiona imani duniani?”
+                    </p>
+                </div>
+
+                <div class="border-l-2 border-blue-400 pl-4">
+                    <p class="text-xs text-blue-400 font-bold uppercase">Waebrania 11:1</p>
+                    <p class="text-sm italic opacity-90">
+                        “Imani ni kuwa na hakika ya mambo yatarajiwayo…”
+                    </p>
+                </div>
+
+                <div class="border-l-2 border-purple-400 pl-4">
+                    <p class="text-xs text-purple-400 font-bold uppercase">Wagalatia 5:22</p>
+                    <p class="text-sm italic opacity-90">
+                        “Tunda la Roho ni upendo, furaha, amani, uvumilivu…”
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- CTA / Marquee -->
+            <div class="mt-4 pt-4 border-t border-white/10">
+                <div class="cta-banner p-3 rounded-xl flex flex-col gap-3">
+
+                    <div class="marquee">
+                        <div class="marquee-track">
+                            <div class="marquee-group">
+                                <span class="text-sm text-indigo-100 font-semibold">
+                                    Amani ya Mungu ipitayo akili zote itawale mioyo yenu
+                                </span>
+                                <span class="text-sm text-pink-300 font-semibold">
+                                    Wenye tumaini kwa Bwana hupata nguvu mpya
+                                </span>
+                                <span class="text-sm text-emerald-200 font-semibold">
+                                    Usikate tamaa, Mungu yupo nawe
+                                </span>
+                                <span class="text-sm text-yellow-300 font-semibold">
+                                    Ushindi wako unatoka katika Kristo
+                                </span>
+                            </div>
+                            <div class="marquee-group">
+                                <span class="text-sm text-indigo-100 font-semibold">
+                                    Amani ya Mungu ipitayo akili zote itawale mioyo yenu
+                                </span>
+                                <span class="text-sm text-pink-300 font-semibold">
+                                    Wenye tumaini kwa Bwana hupata nguvu mpya
+                                </span>
+                                <span class="text-sm text-emerald-200 font-semibold">
+                                    Usikate tamaa, Mungu yupo nawe
+                                </span>
+                                <span class="text-sm text-yellow-300 font-semibold">
+                                    Ushindi wako unatoka katika Kristo
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="marquee marquee-reverse">
+                        <div class="marquee-track">
+                            <div class="marquee-group">
+                                <span class="text-xs text-indigo-200">Tembea katika upendo</span>
+                                <span class="text-xs text-pink-200">Omba bila kukoma</span>
+                                <span class="text-xs text-emerald-200">Jifunze Neno</span>
+                                <span class="text-xs text-yellow-200">Shuhudia matendo ya Mungu</span>
+                            </div>
+                            <div class="marquee-group">
+                                <span class="text-xs text-indigo-200">Tembea katika upendo</span>
+                                <span class="text-xs text-pink-200">Omba bila kukoma</span>
+                                <span class="text-xs text-emerald-200">Jifunze Neno</span>
+                                <span class="text-xs text-yellow-200">Shuhudia matendo ya Mungu</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="flex justify-around py-6 text-indigo-300">
+            <a href="https://wa.me/255711311363?text=Nimevutiwa%20sana%20na%20huduma%20yako%20Claytone%20Mungu%20akubariki" target="_blank" rel="noopener">
+                <i data-lucide="heart" class="w-6 h-6 animate-bounce"></i>
+            </a>
+            <a href="https://wa.me/255711311363?text=Nimevutiwa%20sana%20na%20huduma%20yako%20Claytone%20Mungu%20akubariki" target="_blank" rel="noopener">
+                <i data-lucide="book-open" class="w-6 h-6"></i>
+            </a>
+            <a href="https://wa.me/255711311363?text=Nimevutiwa%20sana%20na%20huduma%20yako%20Claytone%20Mungu%20akubariki" target="_blank" rel="noopener">
+                <i data-lucide="flame" class="w-6 h-6 animate-pulse text-orange-500"></i>
+            </a>
+        </footer>
+
+    </main>
+
+    <script>
+        lucide.createIcons();
+        document.body.addEventListener('touchmove', function (e) {
+            if (e.target.closest('.scroll-content')) return;
+            e.preventDefault();
+        }, { passive: false });
+    </script>
+</body>
+</html>
