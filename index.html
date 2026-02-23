@@ -1,263 +1,402 @@
 <!DOCTYPE html>
-<html lang="sw">
+<html lang="sw-TZ">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Imani na Nguvu</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>1 Henoko — Codex Illuminatus (Toleo Kamili)</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=MedievalSharp&family=Spectral:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 
-    <style>
-        /* Base */
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-        }
+  <style>
+    :root {
+      --gold: #d4af37;
+      --gold-bright: #f6d365;
+      --crimson: #8b0000;
+      --royal-blue: #1e3a5f;
+      --violet: #4b0082;
+      --ice: #9ae6ff;
+      --ink: rgba(255,255,255,0.95);
+      --glass: rgba(0,0,0,0.6);
+    }
 
-        /* Desktop blocker */
-        @media (min-width: 768px) {
-            .desktop-overlay { display: flex !important; }
-        }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #050505;
+      color: var(--ink);
+      font-family: 'Spectral', serif;
+      line-height: 1.8;
+    }
 
-        .desktop-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: #000;
-            color: #fff;
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-        }
+    .codex-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
 
-        /* Glass card */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-        }
+    .main-header {
+      text-align: center;
+      padding: 80px 20px;
+      background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);
+      border-bottom: 2px double var(--gold);
+      margin-bottom: 40px;
+    }
 
-        /* Scroll verses */
-        .scroll-content {
-            height: 60vh;
-            overflow-y: auto;
-            scrollbar-width: none;
-        }
-        .scroll-content::-webkit-scrollbar { display: none; }
+    .main-header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      color: var(--gold-bright);
+      margin: 0;
+      text-shadow: 0 0 20px rgba(212,175,55,0.5);
+      letter-spacing: 8px;
+    }
 
-        .glow-text {
-            text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
-        }
+    .main-header .subtitle {
+      font-family: 'MedievalSharp', cursive;
+      font-size: 1.4rem;
+      color: var(--ice);
+      margin-top: 15px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
 
-        /* CTA + Marquee */
-        .cta-banner {
-            background: linear-gradient(90deg, rgba(99,102,241,0.04), rgba(236,72,153,0.03));
-            border: 1px solid rgba(255,255,255,0.05);
-        }
+    .scene {
+      margin-bottom: 80px;
+      border-radius: 30px;
+      border: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    }
 
-        .marquee {
-            --duration: 55s;
-            width: 100%;
-            overflow: hidden;
-            height: 36px;
-        }
+    .scene-cap {
+      padding: 25px 35px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255,255,255,0.03);
+    }
 
-        .cta-banner .marquee:first-of-type {
-            --duration: 70s;
-        }
+    .scene-cap h2 {
+      font-family: 'Cinzel', serif;
+      margin: 0;
+      font-size: 1.5rem;
+      color: var(--gold);
+    }
 
-        .marquee-track {
-            display: flex;
-            align-items: center;
-            width: max-content;
-            gap: 4rem;
-            animation: scroll var(--duration) linear infinite;
-        }
+    .body-content {
+      padding: 40px;
+      background: rgba(0,0,0,0.2);
+    }
 
-        .marquee-reverse .marquee-track {
-            animation-direction: reverse;
-            --duration: 60s;
-        }
+    .drop-cap::first-letter {
+      float: left;
+      font-family: 'Cinzel', serif;
+      font-size: 5rem;
+      line-height: 4rem;
+      padding: 15px;
+      margin-right: 15px;
+      color: var(--gold-bright);
+      background: var(--glass);
+      border: 2px solid var(--gold);
+      box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+      text-shadow: 2px 2px var(--crimson);
+    }
 
-        .marquee-group {
-            display: inline-flex;
-            gap: 3rem;
-            white-space: nowrap;
-            flex: 0 0 auto;
-        }
+    .verse-block {
+      margin-bottom: 25px;
+      position: relative;
+      text-align: justify;
+    }
 
-        .marquee-group span {
-            display: inline-block;
-            flex-shrink: 0;
-        }
+    .v-num {
+      color: var(--gold);
+      font-weight: bold;
+      font-family: 'MedievalSharp', cursive;
+      font-size: 1.2rem;
+      margin-right: 8px;
+    }
 
-        @keyframes scroll {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
-        }
+    .ref-box {
+      background: rgba(255,255,255,0.05);
+      border-left: 4px solid var(--ice);
+      padding: 20px;
+      margin: 30px 0;
+      font-style: italic;
+      font-size: 1.1rem;
+      border-radius: 0 15px 15px 0;
+    }
 
-        /* Optional: pause on touch/hover */
-        .marquee:hover .marquee-track {
-            animation-play-state: paused;
-        }
-    </style>
+    .ref-label {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: 0.8rem;
+      color: var(--ice);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .judgment-theme { background: linear-gradient(180deg, #1a0505 0%, #050505 100%); border-color: rgba(139, 0, 0, 0.3); }
+    .ascension-theme { background: linear-gradient(180deg, #051a1a 0%, #050505 100%); border-color: rgba(35, 213, 171, 0.3); }
+    .throne-theme { background: linear-gradient(180deg, #12051a 0%, #050505 100%); border-color: rgba(155, 92, 255, 0.3); }
+    .astro-theme { background: linear-gradient(180deg, #050b1a 0%, #050505 100%); border-color: rgba(96, 165, 250, 0.3); }
+
+    .page-marker {
+      display: block;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      color: var(--gold);
+      opacity: 0.5;
+      margin: 40px 0;
+      letter-spacing: 5px;
+    }
+
+    .nav-chips {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 100;
+    }
+
+    .chip {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--gold);
+      padding: 8px 15px;
+      border-radius: 999px;
+      color: var(--gold-bright);
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      transition: 0.3s;
+    }
+
+    .chip:hover { background: var(--gold); color: black; }
+
+    @media (max-width: 600px) {
+      .body-content { padding: 20px; }
+      .main-header h1 { font-size: 2.5rem; }
+    }
+  </style>
 </head>
 
-<body class="text-white flex items-center justify-center p-4">
+<body>
 
-    <!-- Desktop warning -->
-    <div class="desktop-overlay flex-col">
-        <i data-lucide="smartphone" class="w-16 h-16 mb-4 text-indigo-400"></i>
-        <h1 class="text-2xl font-bold">Inapatikana kwenye Simu Pekee</h1>
-        <p class="opacity-70 mt-2">Tafadhali fungua ukurasa huu kwa kutumia smartphone.</p>
-    </div>
+  <div class="nav-chips">
+    <a href="#hukumu" class="chip">HUKUMU</a>
+    <a href="#sura70" class="chip">KUPAA</a>
+    <a href="#sura71" class="chip">KITI CHA ENZI</a>
+    <a href="#sura72" class="chip">MWENENDO WA NURU</a>
+  </div>
 
-    <main class="w-full max-w-sm h-full flex flex-col animate__animated animate__fadeIn">
+  <div class="codex-wrapper">
 
-        <!-- Header -->
-        <header class="text-center mb-4 pt-3">
-            <div class="inline-block p-2 bg-indigo-600 rounded-full mb-2 animate__animated animate__pulse animate__infinite">
-                <i data-lucide="shield-check" class="w-7 h-7 text-white"></i>
-            </div>
-            <h1 class="text-2xl font-extrabold tracking-tight" style="color: #00A859;">
-                NGUVU YA IMANI
-            </h1>
-            <p class="text-indigo-300 text-xs font-light uppercase tracking-widest">
-                Leora Tech Solutions
-            </p>
-        </header>
+    <header class="main-header">
+      <div style="font-size: 2rem; color: var(--gold);">✠</div>
+      <h1>1 HENOKO</h1>
+      <div class="subtitle">CODEX TANZANIENSIS — KISWAHILI SANIFU</div>
+    </header>
 
-        <!-- Content -->
-        <div class="glass-card p-6 flex-grow flex flex-col overflow-hidden">
+    <section id="hukumu" class="scene judgment-theme">
+      <div class="scene-cap">
+        <h2>HUKUMU YA MWANA WA ADAMU</h2>
+        <div style="color: var(--gold); font-family: 'MedievalSharp';">SURA YA 69:27–29</div>
+      </div>
+      <div class="body-content">
+        <div class="verse-block">
+          <p class="drop-cap"><span class="v-num">27</span> Naye akaketi juu ya kiti cha enzi cha utukufu wake, na jumla ya hukumu ikakabidhiwa kwa Mwana wa Adamu. Naye akawafanya wenye dhambi na wote walioupotosha ulimwengu waondoke na kuangamizwa kutoka juu ya uso wa nchi.</p>
+        </div>
+        <div class="verse-block">
+          <p><span class="v-num">28</span> Watafungwa kwa minyororo, na kufungiwa na kutiwa gerezani katika mahali pa mkusanyiko wao, na kazi zao zote zitatoweka kutoka juu ya uso wa nchi.</p>
+        </div>
+        <div class="verse-block">
+          <p><span class="v-num">29</span> Na tangu wakati huo na kuendelea, hakutakuwa na chochote chenye kuharibika; kwa maana huyo Mwana wa Adamu ametokea, naye ameketi juu ya kiti cha enzi cha utukufu wake. Na uovu wote utapita mbele ya uso wake, na neno la huyo Mwana wa Adamu litatoka na kuwa na nguvu mbele ya Bwana wa roho.</p>
+        </div>
+      </div>
+    </section>
 
-            <div class="scroll-content space-y-6 pr-1">
+    <div class="page-marker">● ✠ ●</div>
 
-                <div class="border-l-2 border-indigo-500 pl-4">
-                    <p class="text-xs text-indigo-400 font-bold uppercase">Waebrania 11:6</p>
-                    <p class="text-sm italic opacity-90">
-                        “Lakini pasipo imani haiwezekani kumpendeza Mungu…”
-                    </p>
-                </div>
+    <section id="sura70" class="scene ascension-theme">
+      <div class="scene-cap">
+        <h2>SURA YA 70</h2>
+        <div style="color: var(--ice); font-family: 'MedievalSharp';">KUINULIWA KWA JINA</div>
+      </div>
+      <div class="body-content">
+        <div class="verse-block">
+          <p class="drop-cap"><span class="v-num">1</span> Na ikawa baada ya hayo kwamba wakati wa uhai wake jina lake liliinuliwa kwa Mwana wa Adamu, na kwa Bwana wa roho, kutoka miongoni mwa wale wakaao juu ya nchi.</p>
+        </div>
+        <div class="verse-block">
+          <p><span class="v-num">2</span> Naye akainuliwa juu katika magari ya roho na jina lake likatoweka miongoni mwao. Na tangu siku hiyo sikuhesabiwa tena miongoni mwao; naye akaniweka kati ya pepo mbili, kati ya Kaskazini na Magharibi, ambapo malaika walichukua kamba za kupima mahali pa wateule na wenye haki kwa ajili yangu.</p>
+        </div>
+        <div class="verse-block">
+          <p><span class="v-num">3</span> Na huko nikaona mababa wa kwanza na wenye haki wanaokaa mahali pale tangu mwanzo.</p>
+        </div>
+      </div>
+    </section>
 
-                <div class="border-l-2 border-pink-500 pl-4">
-                    <p class="text-xs text-pink-400 font-bold uppercase">Mathayo 13:58</p>
-                    <p class="text-sm italic opacity-90">
-                        “Hakufanya miujiza mingi huko, kwa sababu ya kutokuamini kwao.”
-                    </p>
-                </div>
-
-                <div class="border-l-2 border-emerald-500 pl-4">
-                    <p class="text-xs text-emerald-400 font-bold uppercase">Luka 18:8</p>
-                    <p class="text-sm italic opacity-90">
-                        “Atakapokuja Mwana wa Adamu, je, ataiona imani duniani?”
-                    </p>
-                </div>
-
-                <div class="border-l-2 border-blue-400 pl-4">
-                    <p class="text-xs text-blue-400 font-bold uppercase">Waebrania 11:1</p>
-                    <p class="text-sm italic opacity-90">
-                        “Imani ni kuwa na hakika ya mambo yatarajiwayo…”
-                    </p>
-                </div>
-
-                <div class="border-l-2 border-purple-400 pl-4">
-                    <p class="text-xs text-purple-400 font-bold uppercase">Wagalatia 5:22</p>
-                    <p class="text-sm italic opacity-90">
-                        “Tunda la Roho ni upendo, furaha, amani, uvumilivu…”
-                    </p>
-                </div>
-
-            </div>
-
-            <!-- CTA / Marquee -->
-            <div class="mt-4 pt-4 border-t border-white/10">
-                <div class="cta-banner p-3 rounded-xl flex flex-col gap-3">
-
-                    <div class="marquee">
-                        <div class="marquee-track">
-                            <div class="marquee-group">
-                                <span class="text-sm text-indigo-100 font-semibold">
-                                    Amani ya Mungu ipitayo akili zote itawale mioyo yenu
-                                </span>
-                                <span class="text-sm text-pink-300 font-semibold">
-                                    Wenye tumaini kwa Bwana hupata nguvu mpya
-                                </span>
-                                <span class="text-sm text-emerald-200 font-semibold">
-                                    Usikate tamaa, Mungu yupo nawe
-                                </span>
-                                <span class="text-sm text-yellow-300 font-semibold">
-                                    Ushindi wako unatoka katika Kristo
-                                </span>
-                            </div>
-                            <div class="marquee-group">
-                                <span class="text-sm text-indigo-100 font-semibold">
-                                    Amani ya Mungu ipitayo akili zote itawale mioyo yenu
-                                </span>
-                                <span class="text-sm text-pink-300 font-semibold">
-                                    Wenye tumaini kwa Bwana hupata nguvu mpya
-                                </span>
-                                <span class="text-sm text-emerald-200 font-semibold">
-                                    Usikate tamaa, Mungu yupo nawe
-                                </span>
-                                <span class="text-sm text-yellow-300 font-semibold">
-                                    Ushindi wako unatoka katika Kristo
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="marquee marquee-reverse">
-                        <div class="marquee-track">
-                            <div class="marquee-group">
-                                <span class="text-xs text-indigo-200">Tembea katika upendo</span>
-                                <span class="text-xs text-pink-200">Omba bila kukoma</span>
-                                <span class="text-xs text-emerald-200">Jifunze Neno</span>
-                                <span class="text-xs text-yellow-200">Shuhudia matendo ya Mungu</span>
-                            </div>
-                            <div class="marquee-group">
-                                <span class="text-xs text-indigo-200">Tembea katika upendo</span>
-                                <span class="text-xs text-pink-200">Omba bila kukoma</span>
-                                <span class="text-xs text-emerald-200">Jifunze Neno</span>
-                                <span class="text-xs text-yellow-200">Shuhudia matendo ya Mungu</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
+    <section id="sura71" class="scene throne-theme">
+      <div class="scene-cap">
+        <h2>SURA YA 71</h2>
+        <div style="color: var(--gold-bright); font-family: 'MedievalSharp';">MAONO YA MBINGUNI</div>
+      </div>
+      <div class="body-content">
+        <div class="verse-block">
+          <p class="drop-cap"><span class="v-num">1</span> Na ikawa baada ya hayo kwamba roho yangu ilihamishwa (ikachukuliwa) na ikapaa mbinguni; nami nikawaona wana wa malaika watakatifu wa Mungu. Walikuwa wakitembea juu ya miale ya moto; mavazi yao yalikuwa meupe, na nyuso zao zilimetameta kama theluji.</p>
+        </div>
+        <div class="verse-block">
+          <p><span class="v-num">2</span> Nami nikaona mito miwili ya moto, na mwanga wa huo moto ukang’aa kama hiakinthi, nami nikaanguka kifudifudi mbele ya Bwana wa roho.</p>
+        </div>
+        <div class="verse-block">
+          <p><span class="v-num">3</span> Na malaika Mikaeli, mmoja wa malaika wakuu, akanishika mkono wangu wa kulia, akaninyanyua na kuniongoza katika siri zote, naye akanionyesha siri zote za haki.</p>
+        </div>
+        <div class="verse-block">
+          <p><span class="v-num">4</span> Naye akanionyesha siri zote za miisho ya mbingu, na ghala zote za nyota zote, na mianga yote, ambako hutoka mbele ya uso wa watakatifu.</p>
+        </div>
+        <div class="verse-block">
+          <p><span class="v-num">5</span> Naye akaihamisha (akaichukua) roho yangu hadi mbingu ya mbingu, nami nikaona huko kana kwamba kumejengwa kwa fuwele, na kati ya hizo fuwele kulikuwa na ndimi za moto ulio hai.</p>
         </div>
 
-        <!-- Footer -->
-        <footer class="flex justify-around py-6 text-indigo-300">
-            <a href="https://wa.me/255711311363?text=Nimevutiwa%20sana%20na%20huduma%20yako%20Claytone%20Mungu%20akubariki" target="_blank" rel="noopener">
-                <i data-lucide="heart" class="w-6 h-6 animate-bounce"></i>
-            </a>
-            <a href="https://wa.me/255711311363?text=Nimevutiwa%20sana%20na%20huduma%20yako%20Claytone%20Mungu%20akubariki" target="_blank" rel="noopener">
-                <i data-lucide="book-open" class="w-6 h-6"></i>
-            </a>
-            <a href="https://wa.me/255711311363?text=Nimevutiwa%20sana%20na%20huduma%20yako%20Claytone%20Mungu%20akubariki" target="_blank" rel="noopener">
-                <i data-lucide="flame" class="w-6 h-6 animate-pulse text-orange-500"></i>
-            </a>
-        </footer>
+        <div class="ref-box">
+          <span class="ref-label">UFUNUO 21:10–11</span>
+          Naye akanichukua katika roho hadi mlima mkubwa na mrefu, akanionyesha ule mji mkuu, Yerusalemu mtakatifu, ukishuka kutoka mbinguni kwa Mungu, ukiwa na utukufu wa Mungu; na nuru yake ilikuwa kama jiwe la thamani sana, kama jiwe la yaspi, safi kama fuwele.
+        </div>
 
-    </main>
+        <div class="verse-block">
+          <p><span class="v-num">6</span> Roho yangu ikaona duara la moto likiuzunguka nyumba ya moto, na pande zake nne kulikuwa na mito iliyojaa moto ulio hai, nayo iliizunguka hiyo nyumba.</p>
+        </div>
+        <div class="verse-block">
+          <p><span class="v-num">7</span> Na kuizunguka kulikuwa na maserafi, makerubi, na maofanimu; na hawa ndio wasiolala, nao hulinda kiti cha enzi cha utukufu wake.</p>
+        </div>
+        <div class="verse-block">
+          <p><span class="v-num">8</span> Nami nikaona malaika wasiohesabika, elfu elfu, na mara elfu kumi mara elfu kumi, wakiizunguka hiyo nyumba. Nao Mikaeli, na Rafaeli, na Gabrieli, na Fanueli, na malaika watakatifu walio mbinguni juu, huingia na kutoka katika nyumba hiyo.</p>
+        </div>
+        <div class="verse-block">
+          <p><span class="v-num">9</span> Nao wakatoka katika nyumba hiyo, yaani Mikaeli na Gabrieli, Rafaeli na Fanueli, na malaika watakatifu wengi wasio na hesabu.</p>
+        </div>
+        <div class="verse-block">
+          <p><span class="v-num">10</span> Na pamoja nao akaja Mkuu wa Siku, kichwa chake kikiwa cheupe na safi kama sufu, na vazi lake lisiloelezeka.</p>
+        </div>
+        <div class="verse-block">
+          <p><span class="v-num">11</span> Nami nikaanguka kifudifudi, na mwili wangu wote ukayeyuka, na roho yangu ikabadilishwa (ikageuzwa utukufu). Nami nikalia kwa sauti kuu katika roho ya nguvu, nikabariki na kutukuza na kuinua.</p>
+        </div>
+        <div class="verse-block">
+          <p><span class="v-num">12</span> Na baraka hizi zilizotoka kinywani mwangu zilimpendeza sana huyo Mkuu wa Siku.</p>
+        </div>
+        <div class="verse-block">
+          <p><span class="v-num">13</span> Na Mkuu wa Siku akaja pamoja na Mikaeli na Gabrieli, Rafaeli na Fanueli, na maelfu kwa maelfu na makumi ya maelfu ya malaika wasio na hesabu.</p>
+        </div>
 
-    <script>
-        lucide.createIcons();
-        document.body.addEventListener('touchmove', function (e) {
-            if (e.target.closest('.scroll-content')) return;
-            e.preventDefault();
-        }, { passive: false });
-    </script>
+        <div class="ref-box">
+          <span class="ref-label">YOHANA 17:24</span>
+          Baba, nataka hao uliowapa wawe pamoja nami pale nilipo, wapate kuuona utukufu wangu ulionipa; kwa maana ulinipenda kabla ya kuwekwa misingi ya ulimwengu.
+        </div>
+
+        <div class="verse-block">
+          <p><span class="v-num">14</span> Na malaika akaja kwangu akanisalimia kwa sauti yake, akaniambia, “Huyu ndiye Mwana wa Adamu aliyezaliwa kwa haki, na haki hukaa juu yake, na haki ya Mkuu wa Siku haimwachi.”</p>
+        </div>
+        <div class="verse-block">
+          <p><span class="v-num">15</span> Naye akaniambia, “Anakutangazia amani katika jina la ulimwengu ujao; kwa maana tangu huko amani imetoka tangu kuumbwa kwa ulimwengu, nayo itakuwa pamoja nawe milele na milele na milele.”</p>
+        </div>
+        <div class="verse-block">
+          <p><span class="v-num">16</span> Na wote watatembea katika njia zake kwa kuwa haki haikumwacha kamwe. Makao yao yatakuwa pamoja naye, nao huo utakuwa urithi wao, wala hawatatenganishwa naye milele na milele na milele.</p>
+        </div>
+        <div class="verse-block">
+          <p><span class="v-num">17</span> Na hivyo kutakuwa na urefu wa siku pamoja na Mwana wa Adamu, na wenye haki watakuwa na amani na njia iliyonyooka katika jina la Bwana wa roho milele na milele.”</p>
+        </div>
+
+        <div class="ref-box">
+          <span class="ref-label">WAEBRANIA 4:3</span>
+          Kwa maana sisi tuliokwisha kuamini tunaingia katika raha ile, kama alivyosema, “Kama nilivyoapa kwa hasira yangu, hawataingia katika raha yangu”; ijapokuwa kazi zilikwisha kukamilishwa tangu kuwekwa misingi ya ulimwengu.
+        </div>
+      </div>
+    </section>
+
+    <section id="sura72" class="scene astro-theme">
+      <div class="scene-cap">
+        <h2>SURA YA 72–74</h2>
+        <div style="color: var(--ice); font-family: 'MedievalSharp';">MWENENDO WA NURU ZA MBINGUNI</div>
+      </div>
+      <div class="body-content">
+        <div class="verse-block">
+          <p class="drop-cap"><span class="v-num">72:1</span> Kitabu cha miendo ya nuru za mbinguni, mahusiano ya kila moja, kulingana na jina lake, asili yake, na miezi yake (mamlaka na majira), ambayo Urieli, malaika mtakatifu aliyekuwa pamoja nami, aliye kiongozi wao, alinionyesha; naye alinionyesha sheria zao zote (kanuni) sawasawa kama zilivyo, na jinsi ilivyo kwa kila mwaka wa ulimwengu na hadi milele, mpaka uumbaji mpya utakapokamilika unaodumu hata milele.</p>
+        </div>
+        <div class="verse-block"><p><span class="v-num">72:2</span> Na hii ndiyo sheria ya kwanza ya nuru: nuru iliyo nuru kuu, yaani Jua, lina kuchomoza kwake katika milango ya mashariki ya mbingu, na kuchwa kwake katika milango ya magharibi ya mbingu.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:3</span> Nami nikaona milango sita ambamo jua huchomoza, na milango sita ambamo jua huchwa, na mwezi huchomoza na kuchwa katika milango hiyo, na viongozi wa nyota na wale wanaoongozwa nao: sita mashariki na sita magharibi, vyote vikifuatana kwa mpangilio unaolingana kwa usahihi.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:4</span> Pia kulikuwa na madirisha mengi upande wa kulia na wa kushoto wa milango hiyo. Na kwanza hutoka nuru kubwa iitwayo Jua, na duara lake ni kama duara la mbingu, naye amejaa kabisa moto wa kuangaza na kupasha joto.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:5</span> Gari ambalo hupanda juu yake husukumwa na upepo, nalo jua hushuka kutoka mbinguni na kurudi kupitia kaskazini ili kufika mashariki, na hivyo huongozwa hata hufika mlango ufaao na kuangaza usoni pa mbingu.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:6</span> Kwa namna hii huchomoza katika mwezi wa kwanza katika mlango mkuu, ambao ni wa nne.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:7</span> Na katika mlango huo wa nne ambamo jua huchomoza katika mwezi wa kwanza kuna madirisha kumi na mawili, ambayo kutoka humo hutoka mwali yanapofunguliwa kwa majira yake.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:8</span> Jua linapochomoza mbinguni, hutokea kupitia mlango huo wa nne kwa asubuhi thelathini mfululizo, na huchwa sawasawa katika mlango wa nne wa magharibi mwa mbingu.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:9</span> Na katika kipindi hiki mchana huwa mrefu kila siku na usiku huwa mfupi hadi asubuhi ya thelathini.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:10</span> Siku hiyo mchana huwa mrefu kuliko usiku kwa sehemu ya tisa, na mchana huwa hasa sehemu kumi na usiku sehemu nane.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:11</span> Jua huchomoza kutoka mlango huo wa nne, na huchwa katika wa nne, kisha hurudi katika mlango wa tano wa mashariki kwa asubuhi thelathini, na kuchomoza humo na kuchwa katika mlango wa tano.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:12</span> Ndipo mchana huongezeka kwa sehemu mbili na kufikia sehemu kumi na moja, na usiku hupungua na kufikia sehemu saba.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:13</span> Nalo hurudi mashariki na kuingia katika mlango wa sita, na kuchomoza na kuchwa katika mlango wa sita kwa asubuhi thelathini na moja kwa sababu ya ishara yake.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:14</span> Siku hiyo mchana huwa mrefu kuliko usiku, na mchana huwa mara mbili ya usiku, na mchana huwa sehemu kumi na mbili, na usiku hupunguzwa na kuwa sehemu sita.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:15</span> Na jua hupanda juu ili kuufanya mchana uwe mfupi na usiku uwe mrefu, nalo jua hurudi mashariki na kuingia katika mlango wa sita, na kuchomoza humo na kuchwa kwa asubuhi thelathini.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:16</span> Na asubuhi thelathini zinapotimia, mchana hupungua kwa sehemu moja kamili, na kuwa sehemu kumi na moja, na usiku sehemu saba.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:17</span> Na jua hutoka katika mlango huo wa sita wa magharibi, na kwenda mashariki na kuchomoza katika mlango wa tano kwa asubuhi thelathini, na kuchwa tena magharibi katika mlango wa tano wa magharibi.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:18</span> Siku hiyo mchana hupungua kwa sehemu mbili, na kufikia sehemu kumi na usiku sehemu nane.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:19</span> Na jua hutoka katika mlango huo wa tano na kuchwa katika mlango wa tano wa magharibi, na kuchomoza katika mlango wa nne kwa asubuhi thelathini na moja kwa sababu ya ishara yake, na kuchwa magharibi.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:20</span> Siku hiyo mchana huwa sawa na usiku kwa urefu, na usiku huwa sehemu tisa na mchana sehemu tisa.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:21</span> Na jua huchomoza kutoka mlango huo na kuchwa magharibi, na kurudi mashariki na kuchomoza kwa asubuhi thelathini katika mlango wa tatu na kuchwa magharibi katika mlango wa tatu.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:22</span> Na siku hiyo usiku huwa mrefu kuliko mchana, na usiku huwa mrefu kuliko usiku, na mchana mfupi kuliko mchana hadi asubuhi ya thelathini, na usiku huwa hasa sehemu kumi na mchana sehemu nane.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:23</span> Na jua huchomoza kutoka mlango huo wa tatu na kuchwa katika mlango wa tatu magharibi, na kurudi mashariki, na kwa asubuhi thelathini huchomoza katika mlango wa pili mashariki, na vivyo hivyo huchwa katika mlango wa pili wa magharibi mwa mbingu.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:24</span> Na siku hiyo usiku huwa sehemu kumi na moja na mchana sehemu saba.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:25</span> Na jua huchomoza siku hiyo kutoka mlango huo wa pili na kuchwa magharibi katika mlango wa pili, na kurudi mashariki katika mlango wa kwanza kwa asubuhi thelathini na moja, na kuchwa katika mlango wa kwanza wa magharibi mwa mbingu.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:26</span> Na siku hiyo usiku huwa mrefu zaidi na kufikia mara mbili ya mchana: na usiku huwa hasa sehemu kumi na mbili na mchana sehemu sita.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:27</span> Na jua limepitia migawanyo ya duara lake na hugeuka tena juu ya migawanyo hiyo ya duara lake, na kuingia katika mlango huo kwa asubuhi thelathini na pia huchwa magharibi kukabiliana nao.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:28</span> Na usiku huo usiku umepungua urefu kwa sehemu ya tisa, na usiku umekuwa sehemu kumi na moja na mchana sehemu saba.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:29</span> Na jua limerudi na kuingia katika mlango wa pili mashariki, na hurudi juu ya migawanyo hiyo ya duara lake kwa asubuhi thelathini, likichomoza na kuchwa.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:30</span> Na siku hiyo usiku hupungua kwa urefu, na usiku huwa sehemu kumi na mchana sehemu nane.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:31</span> Na siku hiyo jua huchomoza kutoka mlango huo, na kuchwa magharibi, na kurudi mashariki, na kuchomoza katika mlango wa tatu kwa asubuhi thelathini na moja, na kuchwa magharibi mwa mbingu.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:32</span> Siku hiyo usiku hupungua na kuwa sehemu tisa, na mchana sehemu tisa, na usiku huwa sawa na mchana na mwaka huwa kamili sawasawa kwa siku zake mia tatu sitini na nne.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:33</span> Na urefu wa mchana na wa usiku, na ufupi wa mchana na wa usiku hutokana na mwenendo wa jua; tofauti hizi hutenganishwa kwa njia hiyo.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:34</span> Hivyo hutokea kwamba mwenendo wake wa mchana huwa mrefu zaidi kila siku, na mwenendo wake wa usiku huwa mfupi zaidi kila usiku.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:35</span> Na hii ndiyo sheria na mwendo wa nuru kuu iitwayo jua, na kurudi kwake kila arudipo mara sitini na huchomoza, milele na milele.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:36</span> Na hicho kinachochomoza ndicho nuru kuu, na huitwa hivyo kulingana na mwonekano wake, kama Bwana alivyoamuru.</p></div>
+        <div class="verse-block"><p><span class="v-num">72:37</span> Kama linavyochomoza, ndivyo linavyochwa, wala halipungui, wala halipumziki, bali hukimbia mchana na usiku, na nuru yake ni mara saba zaidi ya ile ya mwezi; lakini kwa habari ya ukubwa, vyote viwili ni sawasawa.</p></div>
+
+        <div class="verse-block"><p><span class="v-num">73:1</span> Na baada ya sheria hii nikaona sheria nyingine inayohusu nuru ndogo, iitwayo mwezi.</p></div>
+        <div class="verse-block"><p><span class="v-num">73:2</span> Na duara lake ni kama duara la mbingu, na gari lake analopanda husukumwa na upepo, na hupewa nuru kwa kipimo.</p></div>
+        <div class="verse-block"><p><span class="v-num">73:3</span> Na kuchomoza na kuchwa kwake hubadilika kila mwezi, na siku zake ni kama siku za jua, na nuru yake inapokuwa imejaa sawasawa kabisa, hufikia sehemu ya saba ya nuru ya jua.</p></div>
+        <div class="verse-block"><p><span class="v-num">73:4</span> Ndivyo unavyochomoza. Na awamu yake ya kwanza mashariki hutokea katika asubuhi ya thelathini, na siku hiyo huonekana, na kwa ajili yenu huunda awamu ya kwanza ya mwezi katika siku ya thelathini pamoja na jua katika mlango ambamo jua huchomoza.</p></div>
+        <div class="verse-block"><p><span class="v-num">73:5</span> Na nusu yake hutoka kwa sehemu ya saba, na duara lake lote hubaki tupu bila nuru, isipokuwa sehemu moja ya saba yake, na sehemu ya kumi na nne ya nuru yake.</p></div>
+        <div class="verse-block"><p><span class="v-num">73:6</span> Na unapopokea sehemu moja ya saba ya nusu ya nuru yake, nuru yake hufikia sehemu moja ya saba na nusu yake.</p></div>
+        <div class="verse-block"><p><span class="v-num">73:7</span> Na huchwa pamoja na jua, na jua linapochomoza mwezi huchomoza pamoja nalo na hupokea nusu ya sehemu moja ya nuru, na usiku huo katika mwanzo wa asubuhi yake, katika mwanzo wa siku ya mwezi, mwezi huchwa pamoja na jua, wala hauonekani usiku huo ukiwa na sehemu kumi na nne na nusu ya moja yake.</p></div>
+        <div class="verse-block"><p><span class="v-num">73:8</span> Na huchomoza siku hiyo kwa sehemu moja ya saba kamili, na hutokea na kujitenga na kuchomoza kwa jua, na katika siku zake zilizobaki hung’aa katika sehemu kumi na tatu zilizobaki.</p></div>
+
+        <div class="verse-block"><p><span class="v-num">74:1</span> Nami nikaona mwendo mwingine, sheria kwa ajili yake, na jinsi kulingana na sheria hiyo hutimiza mzunguko wake wa kila mwezi.</p></div>
+        <div class="verse-block"><p><span class="v-num">74:2</span> Na haya yote Urieli, malaika mtakatifu aliye kiongozi wao wote, alinionyesha, na mahali pao, nami nikaandika mahali pao kama alivyonionyesha, nami nikaandika miezi yao kama ilivyokuwa, na kuonekana kwa nuru zao mpaka siku kumi na tano zilipokamilika.</p></div>
+        <div class="verse-block"><p><span class="v-num">74:3</span> Kwa sehemu moja moja za saba hutimiza nuru yake yote mashariki, na kwa sehemu moja moja za saba hutimiza giza lake lote magharibi.</p></div>
+        <div class="verse-block"><p><span class="v-num">74:4</span> Na katika miezi fulani hubadili machweo yake, na katika miezi fulani hufuata mwendo wake maalumu.</p></div>
+        <div class="verse-block"><p><span class="v-num">74:5</span> Katika miezi miwili mwezi huchwa pamoja na jua: katika milango hiyo miwili ya katikati, wa tatu na wa nne.</p></div>
+        <div class="verse-block"><p><span class="v-num">74:6</span> Hutokea kwa siku saba, na kugeuka na kurudi tena kupitia mlango ambamo jua huchomoza, na nuru yake yote hujaa; kisha hujitenga na jua, na katika siku nane huingia katika mlango wa sita ambamo jua hutokea.</p></div>
+        <div class="verse-block"><p><span class="v-num">74:7</span> Na jua linapotokea katika mlango wa nne, mwezi hutokea siku saba, hata utoke katika mlango wa tano na kurudi tena katika siku saba kuingia katika mlango wa nne na kutimiza nuru yake yote; kisha hujitenga na kuingia katika mlango wa kwanza katika siku nane.</p></div>
+        <div class="verse-block"><p><span class="v-num">74:8</span> Nao hurudi tena katika siku saba kuingia katika mlango wa nne ambamo jua hutokea.</p></div>
+        <div class="verse-block"><p><span class="v-num">74:9</span> Hivyo nikaona mahali pao, jinsi miezi ilivyochomoza na jua kuchwa katika siku hizo.</p></div>
+        <div class="verse-block"><p><span class="v-num">74:10</span> Na miaka mitano ikiunganishwa pamoja jua hupata ziada ya siku thelathini, na siku zote zinazoongezeka kwake katika mojawapo ya miaka hiyo mitano, zinapotimia, hufikia siku 364.</p></div>
+        <div class="verse-block"><p><span class="v-num">74:11</span> Na ziada ya jua na ya nyota hufikia siku sita; katika miaka mitano siku sita kila mwaka hufikia siku 30, na mwezi hubaki nyuma ya jua na nyota kwa idadi ya siku 30.</p></div>
+        <div class="verse-block"><p><span class="v-num">74:12</span> Na jua na nyota huleta miaka yote kwa usahihi kabisa, kiasi kwamba hazitangulii wala kuchelewa kwa siku hata moja hadi milele; bali hukamilisha miaka kwa haki kamili katika siku 364.</p></div>
+        <div class="verse-block"><p><span class="v-num">74:13</span> Katika miaka mitatu zipo siku 1,092, na katika miaka mitano siku 1,820, hivyo katika miaka minane zipo siku 2,912.</p></div>
+        <div class="verse-block"><p><span class="v-num">74:14</span> Kwa mwezi peke yake, siku katika miaka mitatu hufikia 1,062 siku, na katika miaka mitano hubaki nyuma kwa siku 50 hadi jumla ya 1,770; yaani kwa miaka mitano huongezwa siku 1,000 na 62.</p></div>
+        <div class="verse-block"><p><span class="v-num">74:15</span> Na katika miaka mitano zipo siku 1,770, hivyo kwa mwezi siku katika miaka minane hufikia 2,832 siku.</p></div>
+        <div class="verse-block"><p><span class="v-num">74:16</span> Kwa maana katika miaka minane hubaki nyuma kwa jumla ya siku 80; siku zote anazobaki nyuma katika miaka minane ni 80.</p></div>
+        <div class="verse-block"><p><span class="v-num">74:17</span> Na mwaka hukamilika kwa usahihi kulingana na vituo vyao vya ulimwengu na vituo vya jua, vinavyochomoza kutoka milangoni ambamo jua huchomoza na kuchwa siku 30.</p></div>
+      </div>
+    </section>
+
+    <footer style="text-align: center; padding: 50px; font-family: 'Cinzel'; color: var(--gold); border-top: 1px solid var(--gold);">
+      ✠ MWISHO WA CODEX — LIBER HENOCHI ✠
+    </footer>
+  </div>
+
 </body>
 </html>
